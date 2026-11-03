@@ -1,3 +1,4 @@
+// funções simples pra desenhar os menus e títulos no terminal
 package cliente
 
 import "fmt"

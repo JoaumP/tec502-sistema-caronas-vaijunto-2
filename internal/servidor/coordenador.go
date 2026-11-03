@@ -1,3 +1,4 @@
+// lado coordenador do 3PC (servidor da empresa onde o passageiro pediu a reserva)
 package servidor
 
 import (

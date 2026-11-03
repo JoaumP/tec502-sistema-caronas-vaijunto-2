@@ -1,3 +1,4 @@
+// cliente HTTP usado pelo servidor pra chamar a API REST das outras empresas
 package servidor
 
 import (

@@ -1,3 +1,4 @@
+// testes do pacote servidor rodando com o detector de race condition (-race)
 package servidor_test
 
 import (

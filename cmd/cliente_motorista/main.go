@@ -1,3 +1,4 @@
+// cliente de terminal do motorista (publicar, consultar e cancelar caronas)
 package main
 
 import (

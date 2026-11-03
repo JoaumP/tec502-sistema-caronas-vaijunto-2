@@ -1,3 +1,4 @@
+// busca trechos nas outras empresas via REST e monta os itinerários usando DFS
 package servidor
 
 import (

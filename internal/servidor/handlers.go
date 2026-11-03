@@ -1,3 +1,4 @@
+// trata os pedidos que chegam dos clientes via TCP (login, caronas e reservas)
 package servidor
 
 import (

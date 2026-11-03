@@ -1,3 +1,4 @@
+// funções pra ler e validar o que o usuário digita no terminal
 package cliente
 
 import (

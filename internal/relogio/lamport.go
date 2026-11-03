@@ -1,3 +1,4 @@
+// relógio lógico de Lamport usado pra ordenar os pedidos entre servidores
 package relogio
 
 import "sync"

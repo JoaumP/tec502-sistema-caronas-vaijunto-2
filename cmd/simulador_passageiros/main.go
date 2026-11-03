@@ -1,3 +1,4 @@
+// simulador que abre vários passageiros ao mesmo tempo via TCP pra testar concorrência
 package main
 
 import (

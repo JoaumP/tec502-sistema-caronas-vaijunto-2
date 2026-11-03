@@ -1,3 +1,4 @@
+// tela de login/cadastro e envio de mensagens TCP dos clientes pro servidor
 package cliente
 
 import (

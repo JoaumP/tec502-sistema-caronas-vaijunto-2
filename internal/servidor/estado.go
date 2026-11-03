@@ -1,3 +1,4 @@
+// guarda todo o estado da empresa em memória (protegido por mutex) e salva no JSON
 package servidor
 
 import (

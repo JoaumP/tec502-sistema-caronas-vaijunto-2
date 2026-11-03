@@ -1,3 +1,4 @@
+// structs e constantes das chamadas REST trocadas entre os servidores das empresas
 package consorcio
 
 import "github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"

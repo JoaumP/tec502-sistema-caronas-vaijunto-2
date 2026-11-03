@@ -1,3 +1,4 @@
+// recuperação de transações quando um servidor cai, checagem de leases e fila outbox
 package servidor
 
 import (
@@ -13,10 +14,8 @@ import (
 	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"
 )
 
-// Recuperação pós-queda, verificação de leases vencidos e entrega da outbox
-
-// IniciarWorkers dispara em background a reconciliação inicial de boot, o
-// verificador periódico de leases e o entregador da fila de saída (outbox)
+// IniciarWorkers dispara em background a reconciliação de boot, o verificador
+// periódico de leases e o entregador da fila de saída (outbox)
 func (e *Estado) IniciarWorkers(ctx context.Context) {
 	go func() {
 		e.reconciliarNoBoot()
@@ -226,9 +225,8 @@ func (e *Estado) resolverTransacaoExpirada(txID string) {
 		}
 	}
 
-	// 2. Coordenador está inacessível (caiu): protocolo de terminação cooperativa!
-	// Se nós ainda estamos apenas em "preparada", garantidamente nunca demos OK
-	// na fase 2 (pre-confirmar), então ninguém pode ter confirmado: abortamos na hora!
+	// 2. Coordenador fora do ar: se a gente ainda estava só em "preparada", não tem
+	// como a fase 2 ter fechado, então já aborta e solta a vaga na hora
 	if estadoAtual == modelos.TxPreparada {
 		log.Printf("[%s] coordenador %s inacessível e %s ainda em 'preparada': abortando e liberando assento",
 			e.cfg.Empresa, coordenador, txID)
@@ -236,8 +234,7 @@ func (e *Estado) resolverTransacaoExpirada(txID string) {
 		return
 	}
 
-	// Estamos em "pre_confirmada": consulta todos os participantes (pedindo para
-	// quem ainda estiver só em "preparada" expirar para "abortada").
+	// estamos em "pre_confirmada": conversa com os outros participantes pra fechar a decisão
 	decisao := e.consultarDecisaoParticipantes(txID, participantes)
 	switch decisao {
 	case modelos.TxConfirmada:

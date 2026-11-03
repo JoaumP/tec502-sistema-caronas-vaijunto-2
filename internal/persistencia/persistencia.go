@@ -1,3 +1,4 @@
+// leitura e gravação do arquivo estado.json de cada empresa no disco
 package persistencia
 
 import (

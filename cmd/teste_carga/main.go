@@ -1,3 +1,4 @@
+// suíte de testes que sobe 3 servidores reais pra testar carga, concorrência e quedas
 package main
 
 import (

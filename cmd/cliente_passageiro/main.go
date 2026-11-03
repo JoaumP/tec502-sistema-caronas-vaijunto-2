@@ -1,3 +1,4 @@
+// cliente de terminal do passageiro (buscar viagens, reservar e cancelar)
 package main
 
 import (

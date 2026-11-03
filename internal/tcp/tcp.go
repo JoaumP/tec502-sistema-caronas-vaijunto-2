@@ -1,3 +1,4 @@
+// envio e leitura de mensagens JSON pelo socket TCP (uma por linha, terminada em \n)
 package tcp
 
 import "bufio"

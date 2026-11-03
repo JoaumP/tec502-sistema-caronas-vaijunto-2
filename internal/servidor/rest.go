@@ -1,3 +1,4 @@
+// rotas HTTP da API REST que este servidor oferece pros outros servidores do consórcio
 package servidor
 
 import (

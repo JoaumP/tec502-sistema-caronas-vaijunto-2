@@ -1,3 +1,4 @@
+// lado participante do 3PC (empresas donas dos trechos que estão sendo reservados)
 package servidor
 
 import (
@@ -9,17 +10,10 @@ import (
 	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"
 )
 
-// Papel de PARTICIPANTE (empresa dona de algum trecho do itinerário)
-
 // PrepararParticipante roda a Fase 1 do 3PC nos trechos locais desta empresa.
-//
-// Regra de precedência (Wound-Wait usando o Ticket de Lamport):
-//   - Se sobrou vaga livre, já segura o assento na hora;
-//   - Se lotou, mas tem assento apenas "preparado" por um pedido mais novo
-//     (ticket maior), este pedido "fere" (aborta) aquele mais novo e fica com a vaga.
-//     Quem já passou pra "pre_confirmada" ou "confirmada" nunca perde a vaga;
-//   - Se quem está segurando a pré-reserva é mais antigo que nós, esperamos um
-//     pouquinho (até 250ms), porque ele pode abortar em outra empresa e soltar a vaga.
+// Se faltar vaga livre, usa o ticket de Lamport pra decidir quem tem prioridade:
+// pedido mais antigo fere (aborta) pré-reserva mais nova; se quem está segurando
+// for mais antigo, espera um pouquinho (até 250ms) pra ver se a vaga libera.
 func (e *Estado) PrepararParticipante(txID string, ped consorcio.PedidoPreparar) (int, consorcio.RespostaTx) {
 	if len(ped.Trechos) == 0 {
 		return http.StatusBadRequest, consorcio.RespostaTx{ID: txID, Erro: "lista de trechos vazia"}
@@ -67,7 +61,7 @@ func (e *Estado) tentarPrepararUmaVez(txID string, ped consorcio.PedidoPreparar,
 	e.mu.Lock()
 	defer e.mu.Unlock()
 
-	// chamada repetida (retentativa de rede): responde de forma idempotente
+	// se o mesmo pedido chegar repetido, só devolve o estado atual
 	if existente, ok := e.txPart[txID]; ok {
 		if existente.Estado == modelos.TxAbortada || existente.Estado == modelos.TxCancelada {
 			return http.StatusConflict, consorcio.RespostaTx{
@@ -343,7 +337,7 @@ func (e *Estado) CancelarReservaParticipante(txID string) (int, consorcio.Respos
 	e.mu.Lock()
 	tx, ok := e.txPart[txID]
 	if !ok {
-		// guarda tombstone para o caso de um commit atrasado da outbox chegar depois
+		// já deixa salvo como cancelada caso chegue um confirmar atrasado da outbox depois
 		e.txPart[txID] = &modelos.TxParticipante{
 			ID:           txID,
 			Estado:       modelos.TxCancelada,

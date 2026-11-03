@@ -1,3 +1,4 @@
+// ponto de entrada do servidor da empresa (abre a porta TCP pros clientes e a HTTP pro consórcio)
 package main
 
 import (

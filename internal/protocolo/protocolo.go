@@ -1,3 +1,4 @@
+// tipos de mensagens e structs trocadas via TCP entre cliente e servidor
 package protocolo
 
 import (

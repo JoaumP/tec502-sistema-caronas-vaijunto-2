@@ -1,3 +1,4 @@
+// structs principais do sistema (usuário, carona, trecho, reserva e transações)
 package modelos
 
 import "time"
