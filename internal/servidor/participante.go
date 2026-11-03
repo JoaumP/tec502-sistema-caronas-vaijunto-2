@@ -401,4 +401,3 @@ func (e *Estado) faseCoordenadorVisivelLocked(txID string) string {
 	}
 	return c.Fase
 }
-

@@ -1,6 +1,3 @@
-// Pacote consorcio define os formatos JSON e constantes da API REST usada na
-// comunicação entre os servidores das empresas parceiras.
-// Os detalhes completos das rotas estão documentados em API_CONSORCIO.md.
 package consorcio
 
 import "github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"

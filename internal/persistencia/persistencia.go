@@ -1,13 +1,3 @@
-// Pacote persistencia cuida de gravar e carregar o estado.json local de cada empresa.
-//
-// Duas ideias principais aqui:
-//  1. Escrita atômica: nunca escrevemos direto por cima do estado.json. Primeiro
-//     gravamos tudo em "estado.json.tmp", forçamos o sync pro disco e só no fim
-//     damos os.Rename pro nome oficial. Se o servidor cair no meio, o arquivo
-//     antigo continua inteiro sem corromper.
-//  2. Gravação agrupada: se chegarem várias requisições ao mesmo tempo, uma única
-//     ida ao disco já salva o snapshot com as alterações de todo mundo que estava
-//     esperando, evitando gargalo de I/O sob carga.
 package persistencia
 
 import (
@@ -16,7 +6,7 @@ import (
 	"sync"
 )
 
-// Arquivo coordena os pedidos concorrentes de salvamento em disco
+// Arquivo controla a gravação do estado.json em disco
 type Arquivo struct {
 	caminho string
 	gerar   func() ([]byte, error) // função que monta os bytes JSON do estado atual

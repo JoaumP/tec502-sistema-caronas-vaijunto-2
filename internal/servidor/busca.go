@@ -178,4 +178,3 @@ func montarItinerariosDFS(ofertas []consorcio.TrechoOferta, origem, destino, dat
 	dfs(origem, "")
 	return resultados
 }
-

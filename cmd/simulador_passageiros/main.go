@@ -1,7 +1,3 @@
-// Simulador autônomo de passageiros (roda direto no terminal, sem interface gráfica).
-// Abre vários passageiros concorrentes conectados via TCP nos servidores de todas
-// as empresas do consórcio, publica uma malha inicial de caronas regionais e
-// dispara buscas e reservas simultâneas pra medir vazão e latência sob carga.
 package main
 
 import (

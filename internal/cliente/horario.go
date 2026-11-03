@@ -52,4 +52,3 @@ func FormatarHorario(h string) string {
 	}
 	return t.Format("02/01 15:04")
 }
-

@@ -1,6 +1,3 @@
-// Cliente de terminal do passageiro.
-// O passageiro fala via TCP apenas com o servidor da própria empresa, e esse
-// servidor é quem se vira pra buscar e reservar trechos nas outras empresas do consórcio.
 package main
 
 import (

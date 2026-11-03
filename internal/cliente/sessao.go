@@ -1,6 +1,3 @@
-// Pacote cliente reúne a parte compartilhada pelos dois clientes de terminal
-// (motorista e passageiro): sessão TCP com o servidor, leitura do teclado,
-// conversão de datas/horários e exibição de menus.
 package cliente
 
 import (
@@ -78,4 +75,3 @@ func EnviarEReceber(leitor *bufio.Reader, escritor *bufio.Writer, msg protocolo.
 	json.Unmarshal(respostaBytes, &resposta)
 	return resposta
 }
-

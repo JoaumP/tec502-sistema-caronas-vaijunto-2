@@ -438,4 +438,3 @@ func (e *Estado) enviarPreConfirmar(emp, txID string) (bool, error) {
 	}
 	return false, nil
 }
-

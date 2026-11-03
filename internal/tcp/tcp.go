@@ -1,6 +1,3 @@
-// Pacote tcp cuida do envio e leitura de mensagens na conexão TCP com os clientes.
-// Como o TCP é um fluxo contínuo de bytes (não separa mensagens sozinho), cada
-// JSON enviado termina com '\n' pra marcar onde uma mensagem acaba e a outra começa.
 package tcp
 
 import "bufio"

@@ -405,4 +405,3 @@ func (e *Estado) processarOutbox() {
 	}
 	wg.Wait()
 }
-

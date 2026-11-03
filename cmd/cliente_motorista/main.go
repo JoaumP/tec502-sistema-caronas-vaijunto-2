@@ -1,6 +1,3 @@
-// Cliente de terminal do motorista.
-// O motorista conecta via TCP somente no servidor da empresa dele pra publicar
-// caronas, ver quem reservou vaga nos seus trechos e cancelar viagens.
 package main
 
 import (

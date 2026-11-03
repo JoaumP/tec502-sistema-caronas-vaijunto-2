@@ -1,8 +1,3 @@
-// Servidor de uma empresa do consórcio de caronas.
-// Cada instância roda de forma independente (ex: em contêineres/máquinas separadas),
-// abrindo duas portas:
-//   - Porta TCP: atende os motoristas e passageiros cadastrados nesta empresa;
-//   - Porta HTTP: expõe a API REST pra cooperar com os servidores das outras empresas.
 package main
 
 import (

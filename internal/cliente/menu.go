@@ -23,4 +23,3 @@ func ImprimirMenu(titulo string, opcoes []string) {
 func ImprimirSeparador() {
 	fmt.Println("────────────────────────────────────────")
 }
-

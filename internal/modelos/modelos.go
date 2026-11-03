@@ -1,15 +1,8 @@
-// Pacote modelos reúne as estruturas de dados que cada empresa guarda localmente.
-//
-// Aqui as structs não têm mutex interno: quem protege o acesso concorrente é o
-// RWMutex único de servidor.Estado. Assim fica bem mais simples tirar um snapshot
-// consistente pro arquivo JSON sem risco de deadlock entre travas menores, e toda
-// parte demorada (rede e disco) roda fora do lock.
 package modelos
 
 import "time"
 
-// Usuario representa um motorista ou passageiro cadastrado nesta empresa.
-// Esses dados ficam só no servidor local e nunca são mandados pras outras empresas.
+// Usuario: quem usa o sistema (motorista ou passageiro)
 type Usuario struct {
 	ID        int64  `json:"id"`
 	Login     string `json:"login"`
@@ -22,8 +15,7 @@ const (
 	CaronaCancelada = "cancelada"
 )
 
-// Trecho é uma parte da rota entre duas cidades dentro de uma carona desta empresa.
-// Só a própria empresa dona da carona pode alterar as vagas desse trecho.
+// Trecho: menor unidade de viagem, entre duas cidades
 type Trecho struct {
 	ID       int64 `json:"id"`
 	IDCarona int64 `json:"id_carona"`
@@ -37,11 +29,10 @@ type Trecho struct {
 	PrecoCentavos int `json:"preco_centavos"`
 
 	AssentosTotais int `json:"assentos_totais"`
-	// vagas disponíveis no momento (descontando pré-reservas ativas e confirmadas)
 	AssentosLivres int `json:"assentos_livres"`
 }
 
-// Carona é a viagem publicada pelo motorista, formada por um ou mais trechos seguidos
+// Carona: viagem anunciada pelo motorista, formada por um ou mais trechos
 type Carona struct {
 	ID          int64   `json:"id"`
 	MotoristaID int64   `json:"motorista_id"`
@@ -49,15 +40,13 @@ type Carona struct {
 	Trechos     []int64 `json:"trechos"`
 }
 
-// RefTrecho identifica um trecho no consórcio todo. Como cada empresa numera seus
-// trechos começando de 1, precisamos sempre do par (Empresa, ID).
+// RefTrecho identifica um trecho no consórcio pelo par (empresa, id do trecho)
 type RefTrecho struct {
 	Empresa string `json:"empresa"`
 	ID      int64  `json:"id"`
 }
 
-// TrechoInfo guarda uma cópia dos dados públicos do trecho dentro da reserva do
-// passageiro, pra ele conseguir consultar suas viagens mesmo se outra empresa cair.
+// TrechoInfo guarda os dados públicos de um trecho dentro da reserva
 type TrechoInfo struct {
 	Empresa        string `json:"empresa"`
 	ID             int64  `json:"id"`
@@ -68,18 +57,16 @@ type TrechoInfo struct {
 	PrecoCentavos  int    `json:"preco_centavos"`
 }
 
-// Ref devolve o identificador global (empresa + id) deste trecho
+// Ref devolve o par (empresa, id) do trecho
 func (t TrechoInfo) Ref() RefTrecho { return RefTrecho{Empresa: t.Empresa, ID: t.ID} }
 
-// Status possíveis de uma reserva para o passageiro
+// Status possíveis de uma reserva
 const (
 	ReservaConfirmada = "confirmada"
 	ReservaCancelada  = "cancelada"
 )
 
-// Reserva guarda o itinerário fechado por um passageiro desta empresa.
-// Ela fica salva no servidor onde o passageiro tem conta (que coordenou o 3PC),
-// mesmo quando os trechos pertencem a outras empresas.
+// Reserva guarda o itinerário reservado pelo passageiro
 type Reserva struct {
 	ID           string       `json:"id"`
 	PassageiroID int64        `json:"passageiro_id"`
@@ -88,9 +75,7 @@ type Reserva struct {
 	CriadoEm     time.Time    `json:"criado_em"`
 }
 
-// Ticket define a prioridade de uma tentativa de reserva quando falta vaga.
-// Usa o relógio lógico de Lamport do começo do pedido e desempata pelo nome da
-// empresa e ID da transação, garantindo a mesma ordem em qualquer servidor.
+// Ticket define a ordem de prioridade das reservas usando o relógio de Lamport
 type Ticket struct {
 	Relogio int64  `json:"relogio"`
 	Empresa string `json:"empresa"`

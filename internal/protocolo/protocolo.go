@@ -1,5 +1,3 @@
-// Pacote protocolo define as mensagens JSON trocadas via TCP entre os clientes
-// (motorista e passageiro) e o servidor da empresa deles.
 package protocolo
 
 import (

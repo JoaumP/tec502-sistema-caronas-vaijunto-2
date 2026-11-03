@@ -1,18 +1,3 @@
-// Suíte automatizada de testes distribuídos sob carga e com injeção de falhas.
-//
-// Sobe 3 instâncias reais e isoladas do servidor (representando 3 empresas
-// distintas do consórcio, cada uma em seu próprio processo, portas e pasta de
-// persistência) e verifica:
-//  1. Busca federada e reserva atômica combinando as 3 empresas;
-//  2. Exclusão mútua sob carga concorrente (nenhum assento vendido 2x);
-//  3. Critério de precedência com relógio lógico de Lamport (Wound-Wait);
-//  4. Atomicidade sob disputa parcial, validação de encadeamento e sem deadlock;
-//  5. Cancelamento de carona em cascata entre 3 empresas;
-//  6. Falha de participante no meio da reserva + continuidade + recuperação;
-//  7. Falha do coordenador após Fase 1 (liberação sem bloqueio indefinido);
-//  8. Falha do coordenador após Fase 2 (terminação cooperativa consistente);
-//  9. Carga intensa com queda abrupta (SIGKILL), recuperação e auditoria global;
-//  10. Cancelamento de carona em cascata com coordenador offline e reconciliação.
 package main
 
 import (

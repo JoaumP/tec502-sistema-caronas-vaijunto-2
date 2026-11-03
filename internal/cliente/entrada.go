@@ -81,4 +81,3 @@ func LerSimNao(entrada *bufio.Reader, pergunta string) bool {
 		fmt.Println("responda com s ou n")
 	}
 }
-
