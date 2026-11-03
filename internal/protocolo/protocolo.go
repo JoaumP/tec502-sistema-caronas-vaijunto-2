@@ -5,7 +5,7 @@ package protocolo
 import (
 	"encoding/json"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/modelos"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"
 )
 
 // Mensagem é o envelope padrão de todo pedido que o cliente manda pro servidor

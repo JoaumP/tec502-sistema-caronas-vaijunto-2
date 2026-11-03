@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/consorcio"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/modelos"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/consorcio"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"
 )
 
 // Papel de PARTICIPANTE (empresa dona de algum trecho do itinerário)

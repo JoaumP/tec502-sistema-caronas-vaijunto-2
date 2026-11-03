@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/protocolo"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/tcp"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/protocolo"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/tcp"
 )
 
 // Autenticar mostra a tela inicial de login/cadastro e fica repetindo até o

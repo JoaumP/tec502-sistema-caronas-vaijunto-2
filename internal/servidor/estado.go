@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/modelos"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/persistencia"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/relogio"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/persistencia"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/relogio"
 )
 
 // Config reúne os parâmetros de execução de uma empresa do consórcio

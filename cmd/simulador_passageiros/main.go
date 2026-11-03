@@ -19,8 +19,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/protocolo"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/tcp"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/protocolo"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/tcp"
 )
 
 type alvoEmpresa struct {

@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/consorcio"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/consorcio"
 )
 
 // HandlerREST registra todas as rotas HTTP da API REST que esta empresa expõe

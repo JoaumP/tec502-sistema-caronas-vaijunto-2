@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/consorcio"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/modelos"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/consorcio"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"
 )
 
 // erroPreemptada avisa que nossa pré-reserva perdeu a vaga na fase 1 pra outra

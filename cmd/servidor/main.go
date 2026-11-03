@@ -20,9 +20,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/protocolo"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/servidor"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/tcp"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/protocolo"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/servidor"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/tcp"
 )
 
 // maxConexoesTCP limita quantos clientes podem ficar conectados ao mesmo tempo

@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/consorcio"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/relogio"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/consorcio"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/relogio"
 )
 
 // ErrIndisponivel indica que o servidor de outra empresa não respondeu (timeout,

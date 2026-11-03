@@ -9,9 +9,9 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/consorcio"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/modelos"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/protocolo"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/consorcio"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/modelos"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/protocolo"
 )
 
 // respostaErro monta o envelope padrão de falha pro cliente TCP

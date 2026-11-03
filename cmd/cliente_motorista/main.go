@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/cliente"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/protocolo"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/cliente"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/protocolo"
 )
 
 func main() {

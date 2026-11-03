@@ -9,8 +9,8 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/consorcio"
-	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/protocolo"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/consorcio"
+	"github.com/JoaumP/tec502-sistema-caronas-vaijunto-2/internal/protocolo"
 )
 
 // maxSaltosItinerario limita quantos trechos uma viagem pode combinar seguida,
