@@ -1,4 +1,7 @@
-package auxiliares
+// Pacote cliente reúne a parte compartilhada pelos dois clientes de terminal
+// (motorista e passageiro): sessão TCP com o servidor, leitura do teclado,
+// conversão de datas/horários e exibição de menus.
+package cliente
 
 import (
 	"bufio"
@@ -8,9 +11,10 @@ import (
 
 	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/protocolo"
 	"github.com/JoaumP/tec502-sistema-caronas-vaijunto/internal/tcp"
-
 )
 
+// Autenticar mostra a tela inicial de login/cadastro e fica repetindo até o
+// usuário conseguir entrar na conta ou escolher sair do programa (retorna false)
 func Autenticar(leitor *bufio.Reader, escritor *bufio.Writer, entrada *bufio.Reader) bool {
 	for {
 		fmt.Println("\n1. Entrar")
@@ -41,6 +45,7 @@ func Autenticar(leitor *bufio.Reader, escritor *bufio.Writer, entrada *bufio.Rea
 		senha, _ := entrada.ReadString('\n')
 		senha = strings.TrimSpace(senha)
 
+		// monta o pedido e manda pro servidor da empresa validar
 		pedido := protocolo.PedidoLogin{Login: login, Senha: senha}
 		payload, _ := json.Marshal(pedido)
 		msg := protocolo.Mensagem{Operacao: operacao, Payload: payload}
@@ -57,6 +62,8 @@ func Autenticar(leitor *bufio.Reader, escritor *bufio.Writer, entrada *bufio.Rea
 	}
 }
 
+// EnviarEReceber transforma a mensagem em JSON, manda pelo socket TCP pro
+// servidor da empresa e espera a linha JSON de resposta
 func EnviarEReceber(leitor *bufio.Reader, escritor *bufio.Writer, msg protocolo.Mensagem) protocolo.Resposta {
 	dados, _ := json.Marshal(msg)
 	tcp.EnviarMensagem(escritor, dados)
@@ -71,3 +78,4 @@ func EnviarEReceber(leitor *bufio.Reader, escritor *bufio.Writer, msg protocolo.
 	json.Unmarshal(respostaBytes, &resposta)
 	return resposta
 }
+

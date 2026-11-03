@@ -1,4 +1,4 @@
-package auxiliares
+package cliente
 
 import (
 	"bufio"
@@ -6,10 +6,9 @@ import (
 	"math"
 	"strconv"
 	"strings"
-	"time"
 )
 
-// LerTexto pede uma linha de texto, repetindo se vier vazio
+// LerTexto pede uma linha de texto no terminal, repetindo se vier vazio
 func LerTexto(entrada *bufio.Reader, pergunta string) string {
 	for {
 		fmt.Print(pergunta)
@@ -22,20 +21,13 @@ func LerTexto(entrada *bufio.Reader, pergunta string) string {
 	}
 }
 
-// LerTextoOpcional pede uma linha de texto, aceitando vazio (usado pra "vazio para terminar")
-func LerTextoOpcional(entrada *bufio.Reader, pergunta string) string {
-	fmt.Print(pergunta)
-	texto, _ := entrada.ReadString('\n')
-	return strings.TrimSpace(texto)
-}
-
 // LerData pede uma data DD/MM/AAAA, repetindo até ser válida.
-// Devolve o texto original (não convertido) — a conversão acontece em MontarHorarios.
+// Devolve o texto digitado (a conversão pro formato interno fica em horario.go)
 func LerData(entrada *bufio.Reader, pergunta string) string {
 	for {
 		texto := LerTexto(entrada, pergunta)
 		if _, err := ConverterData(texto); err == nil {
-			return texto // devolve "20/10/2000", validado mas no formato original
+			return texto
 		}
 		fmt.Println("data inválida, use o formato DD/MM/AAAA")
 	}
@@ -52,7 +44,7 @@ func LerHora(entrada *bufio.Reader, pergunta string) string {
 	}
 }
 
-// LerPrecoCentavos pede um preço em reais, repetindo até ser válido, devolve em centavos
+// LerPrecoCentavos pede um preço em reais, repetindo até ser válido, e devolve em centavos
 func LerPrecoCentavos(entrada *bufio.Reader, pergunta string) int {
 	for {
 		texto := LerTexto(entrada, pergunta)
@@ -76,7 +68,7 @@ func LerInteiroPositivo(entrada *bufio.Reader, pergunta string) int {
 	}
 }
 
-// LerSimNao pede confirmação s/n, repetindo até ser uma das duas opções
+// LerSimNao pede confirmação s/n, repetindo até o usuário digitar uma das duas opções
 func LerSimNao(entrada *bufio.Reader, pergunta string) bool {
 	for {
 		texto := strings.ToLower(LerTexto(entrada, pergunta))
@@ -90,23 +82,3 @@ func LerSimNao(entrada *bufio.Reader, pergunta string) bool {
 	}
 }
 
-func ConverterHora(entrada string) (string, error) {
-	_, err := time.Parse("15:04", entrada)
-	return entrada, err
-}
-
-func ConverterData(entrada string) (string, error) {
-	t, err := time.Parse("02/01/2006", entrada)
-	if err != nil {
-		return "", err
-	}
-	return t.Format("2006-01-02"), nil
-}
-
-func ConverterDataHora(entrada string) (string, error) {
-	t, err := time.Parse("02/01/2006 15:04", entrada)
-	if err != nil {
-		return "", err
-	}
-	return t.Format("2006-01-02T15:04"), nil
-}

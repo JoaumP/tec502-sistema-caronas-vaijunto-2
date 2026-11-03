@@ -8,5 +8,7 @@ RUN CGO_ENABLED=0 go build -o servidor ./cmd/servidor
 FROM alpine:latest
 WORKDIR /app
 COPY --from=build /app/servidor .
-EXPOSE 8080
+RUN mkdir -p /app/dados
+VOLUME ["/app/dados"]
+EXPOSE 8080 8081
 ENTRYPOINT ["./servidor"]

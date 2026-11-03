@@ -1,0 +1,57 @@
+services:
+  vaijunto:
+    build:
+      context: .
+      dockerfile: Dockerfile.servidor
+    container_name: servidor-vaijunto
+    environment:
+      EMPRESA: vaijunto
+      PORTA_TCP: "8080"
+      PORTA_HTTP: "8081"
+      DIR_DADOS: /app/dados
+      PEERS: vaijunto=http://vaijunto:8081,rotasul=http://rotasul:8081,expresso=http://expresso:8081
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    volumes:
+      - dados_vaijunto:/app/dados
+
+  rotasul:
+    build:
+      context: .
+      dockerfile: Dockerfile.servidor
+    container_name: servidor-rotasul
+    environment:
+      EMPRESA: rotasul
+      PORTA_TCP: "8080"
+      PORTA_HTTP: "8081"
+      DIR_DADOS: /app/dados
+      PEERS: vaijunto=http://vaijunto:8081,rotasul=http://rotasul:8081,expresso=http://expresso:8081
+    ports:
+      - "8082:8080"
+      - "8083:8081"
+    volumes:
+      - dados_rotasul:/app/dados
+
+  expresso:
+    build:
+      context: .
+      dockerfile: Dockerfile.servidor
+    container_name: servidor-expresso
+    environment:
+      EMPRESA: expresso
+      PORTA_TCP: "8080"
+      PORTA_HTTP: "8081"
+      DIR_DADOS: /app/dados
+      PEERS: vaijunto=http://vaijunto:8081,rotasul=http://rotasul:8081,expresso=http://expresso:8081
+    ports:
+      - "8084:8080"
+      - "8085:8081"
+    volumes:
+      - dados_expresso:/app/dados
+
+volumes:
+  dados_vaijunto:
+  dados_rotasul:
+  dados_expresso:
+

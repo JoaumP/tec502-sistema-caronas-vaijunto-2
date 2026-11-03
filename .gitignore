@@ -27,6 +27,9 @@ go.work.sum
 # env file
 .env
 
+# Persistência local gerada pelos servidores em execução
+dados/
+
 # Editor/IDE
 # .idea/
 # .vscode/
